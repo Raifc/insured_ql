@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  api-graphql:
+    container_name: api_graphql
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_URL=sqlite3:/db.sqlite3
+      - RABBITMQ_URL=amqp://rabbitmq
+    volumes:
+      - .:/app
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    external: true
+    name: insured_ql_mynetwork
