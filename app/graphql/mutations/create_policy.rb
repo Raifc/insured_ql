@@ -1,33 +1,33 @@
-# frozen_string_literal: true
-
-require 'bunny'
-
 module Mutations
-  class CreatePolicy < BaseMutation # rubocop:disable Style/Documentation
+  class CreatePolicy < BaseMutation
     argument :effective_from, String, required: true
     argument :effective_until, String, required: true
-    argument :vehicle_id, ID, required: true
-    argument :insured_person_id, ID, required: true
+    argument :vehicle, GraphQL::Types::JSON, required: true
+    argument :insured_person, GraphQL::Types::JSON, required: true
 
-    field :policy, Types::PolicyType, null: true
+    field :ok, Boolean, null: false
     field :errors, [String], null: false
 
-    def resolve(effective_from:, effective_until:, vehicle_id:, insured_person_id:)
+    def resolve(effective_from:, effective_until:, vehicle:, insured_person:)
       connection = Bunny.new(hostname: 'rest_insured_rabbitmq_1')
       connection.start
       channel = connection.create_channel
       queue = channel.queue('policy-created')
 
-      policy = {
-        effective_from:,
-        effective_until:,
-        vehicle_id:,
-        insured_person_id:
-      }.to_h
+      policy_payload = {
+        effective_from: effective_from,
+        effective_until: effective_until,
+        vehicle: vehicle,
+        insured_person: insured_person
+      }.to_json
 
-      channel.default_exchange.publish(policy, routing_key: queue.name)
+      channel.default_exchange.publish(policy_payload, routing_key: queue.name)
 
       connection.close
+
+      { ok: true, errors: [] }
+    rescue StandardError => e
+      { ok: false, errors: [e.message] }
     end
   end
 end
