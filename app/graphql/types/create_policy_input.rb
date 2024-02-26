@@ -4,6 +4,6 @@ module Types
     argument :effectiveFrom, String, required: true
     argument :effectiveUntil, String, required: true
     argument :vehicle, Types::VehicleInput, required: true
-    argument :insuredPerson, Types::InsuredPersonInput, required: true
+    argument :Customer, Types::CustomerInput, required: true
   end
 end
