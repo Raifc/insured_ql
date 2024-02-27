@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'faraday'
 require 'json'
 
@@ -9,16 +11,8 @@ class Resolvers::PolicyResolver < Resolvers::BaseResolver
   def resolve(id:)
     response = Faraday.get("http://api_rest:3000/policies/#{id}")
 
-    if response.success?
-      parsed_response = JSON.parse(response.body)
-      policy_data = parsed_response['policy']
-      {
-        policy_id: policy_data['policy_id'],
-        effective_from: policy_data['effective_from'],
-        effective_until: policy_data['effective_until'],
-        customer: policy_data['customer'],
-        vehicle: policy_data['vehicle']
-      }
-    end
+    return unless response.success?
+
+    JSON.parse(response.body)
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'customer_type'
 require_relative 'vehicle_type'
 
