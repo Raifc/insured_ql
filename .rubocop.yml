@@ -1,0 +1,126 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "bin/**/*"
+    - "db/**/*"
+    - "config/**/*"
+    - "script/**/*"
+
+########### LAYOUT COPS ###########
+
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+
+Layout/FirstHashElementIndentation:
+  Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: space
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/HashAlignment:
+  Enabled: true
+  EnforcedLastArgumentHashStyle: always_inspect
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
+Layout/LineLength:
+  Max: 120
+
+########### METRICS COPS ###########
+
+Metrics/AbcSize:
+  Exclude:
+    - spec/**/*_spec.rb
+  Max: 20
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*_spec.rb
+  Max: 1000
+
+Metrics/ClassLength:
+  Exclude:
+    - spec/**/*_spec.rb
+  Max: 100
+
+Metrics/MethodLength:
+  Exclude:
+    - spec/**/*_spec.rb
+  Max: 15
+
+Metrics/ModuleLength:
+  Max: 100
+
+Metrics/ParameterLists:
+  Exclude:
+    - spec/**/*_spec.rb
+
+########### STYLE COPS ###########
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    inject: "inject"
+
+Style/Documentation:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Exclude:
+    - spec/**/*_spec.rb
+
+Style/GuardClause:
+  Enabled: true
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
+
+Style/IfUnlessModifier:
+  Enabled: true
+
+Style/Lambda:
+  Enabled: true
+
+Style/RaiseArgs:
+  Enabled: false
+
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+Style/SingleLineBlockParams:
+  Enabled: false
+
+Style/FormatString:
+  Enabled: false
+
+Style/FormatStringToken:
+  EnforcedStyle: template
+
+Style/WordArray:
+  Enabled: true
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/TrivialAccessors:
+  AllowPredicates: true
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+                

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class CreatePolicy < BaseMutation
     argument :effective_from, String, required: true
@@ -28,6 +30,12 @@ module Mutations
       { ok: true, errors: [] }
     rescue StandardError => e
       { ok: false, errors: [e.message] }
+    end
+
+    private
+
+    def parse_policy
+      
     end
   end
 end

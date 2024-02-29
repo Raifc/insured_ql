@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class PolicyInputType < Types::BaseObject
     field :ok, Boolean, null: false
