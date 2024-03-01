@@ -34,7 +34,6 @@ class Resolvers::PolicyResolver < Resolvers::BaseResolver
 
   def fetch_policy(id)
     response = Faraday.get("http://api_rest:3000/policies/#{id}")
-
     return nil unless response.success?
 
     JSON.parse(response.body)
