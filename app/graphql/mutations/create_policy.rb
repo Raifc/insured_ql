@@ -10,8 +10,10 @@ module Mutations
     field :ok, Boolean, null: false
     field :errors, [String], null: false
 
-    def resolve(effective_from:, effective_until:, vehicle:, customer:)
-      connection = Bunny.new(hostname: 'rest_insured_rabbitmq_1')
+    BUNNY_HOSTNAME = 'rest_insured_rabbitmq_1'
+
+    def resolve(effective_from:, effective_until:, vehicle:, insured_person:)
+      connection = Bunny.new(hostname: BUNNY_HOSTNAME)
       connection.start
       channel = connection.create_channel
       queue = channel.queue('policy-created', durable: true)
@@ -20,7 +22,7 @@ module Mutations
         effective_from: effective_from,
         effective_until: effective_until,
         vehicle: vehicle,
-        customer: customer
+        insured_person: insured_person
       }.to_json
 
       channel.default_exchange.publish(policy_payload, routing_key: queue.name)
@@ -30,12 +32,6 @@ module Mutations
       { ok: true, errors: [] }
     rescue StandardError => e
       { ok: false, errors: [e.message] }
-    end
-
-    private
-
-    def parse_policy
-      
     end
   end
 end
