@@ -1,24 +1,15 @@
-# README
+# Running the project
+## Note: This app depends on the [rest insured](https://github.com/Raifc/rest_insured)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. First, clone and run the [rest insured](https://github.com/Raifc/rest_insured) project.
 
-Things you may want to cover:
+2. Run docker-compose or docker compose build
 
-* Ruby version
+```bash
+docker-compose build
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+3. Run docker-compose up
+```bash
+docker-compose up
+```
