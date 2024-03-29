@@ -1,5 +1,5 @@
 # Running the project
-## Note: This app depends on the [rest insured](https://github.com/Raifc/rest_insured)
+#### Note: This app works alongside with [rest insured](https://github.com/Raifc/rest_insured) app.
 
 1. First, clone and run the [rest insured](https://github.com/Raifc/rest_insured) project.
 
