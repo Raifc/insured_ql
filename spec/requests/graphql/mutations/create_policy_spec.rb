@@ -13,7 +13,7 @@ RSpec.describe Mutations::CreatePolicy, type: :mutation do
           model: 'Hilux',
           year: 2022
         },
-        customer: {
+        insured_person: {
           name: 'John Doe',
           document_number: '1234567839'
         }

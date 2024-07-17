@@ -9,17 +9,16 @@ class Resolvers::PolicyResolver < Resolvers::BaseResolver
   argument :id, ID, required: true
 
   CACHE_EXPIRATION = 30.seconds
+  private_constant CACHE_EXPIRATION
 
   def resolve(id:)
     cached_policy = read_cached_policy(id)
 
-    if cached_policy
-      cached_policy
-    else
-      policy = fetch_policy(id)
-      cache_policy(id, policy) if policy
-      policy
-    end
+    return cached_policy if cached_policy
+
+    policy = fetch_policy(id)
+    cache_policy(id, policy) if policy
+    policy
   end
 
   private
